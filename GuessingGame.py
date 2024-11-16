@@ -6,7 +6,7 @@ def computer_guessing():
     if 'num1' not in st.session_state:
         st.session_state.num1 = 0
     if 'num2' not in st.session_state:
-        st.session_state.num2 = 100s
+        st.session_state.num2 = 100
 
     st.title("Computer Guessing Mode")
     
