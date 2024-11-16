@@ -13,7 +13,7 @@ def computer_guessing():
     num1 = st.number_input("Enter the Starting Range", min_value=0, max_value=100, value=st.session_state.num1)
     num2 = st.number_input("Enter the Ending Range", min_value=0, max_value=100, value=st.session_state.num2)
 
-    if st.button("SUBMIT"):
+    if st.button("START"):
         if num1 > num2:
             st.write("Starting Range is higher than Ending Range. Please enter a valid range.")
         else:
@@ -22,19 +22,24 @@ def computer_guessing():
             guess = r.randint(num1, num2)
             if "guess" not in st.session_state:
                 st.session_state.guess=guess
-            st.subheader(f"Computer guesses: {guess}")
+            st.subheader(f"Computer guess: {guess}")
     feedback=st.radio("How is the machine guess ?",("CORRECT","Too High","Too Low"))
-    if feedback=="CORRECT":
-        st.write("Correct")
-    elif feedback=="Too High":
-        st.session_state.num2 = st.session_state.guess - 1
+    if st.button("SUBMIT"):
+        if feedback=="CORRECT":
+            st.write("Correct")
+            st.balloons()
+        elif feedback=="Too High":
+            st.session_state.num2 = st.session_state.guess - 1
+            st.session_state.guess = (st.session_state.num1 + st.session_state.num2) // 2
+            st.write(f"The machine's new guess is {st.session_state.guess}")
+            
+        elif feedback=="Too Low":
+            st.session_state.num1 = st.session_state.guess + 1
+            st.session_state.guess = (st.session_state.num1 + st.session_state.num2) // 2
+            st.write(f"The machine's new guess is {st.session_state.guess}")
         
-    elif feedback=="Too Low":
-        st.session_state.num1 = st.session_state.guess + 1
         
-        
-    st.session_state.guess = (st.session_state.num1 + st.session_state.num2) // 2
-    st.write(f"The machine's new guess is {st.session_state.guess}")
+    
 
 
 def user_guessing():
