@@ -61,11 +61,24 @@ def user_guessing():
     if st.button("Reset Game"):
          del st.session_state.secret_number 
 
+def Portfolio():
+    st.title("Portfolio")
+    st.subheader("Name: Heamanthraj.S")
+    st.subheader("College: KGiSl Institute of Technology")
+    st.subheader("Branch: B.Tech IT")
+    st.subheader("School: Ramco Vidya Mandir Snior Secondary School")
+    st.subheader("Native: Ariyalur")
+
+    
+
+
 with st.sidebar:
-    a = st.radio("Choice", ("Computer Guessing", "User Guessing"))
+    a = st.radio("Choice", ("Portfolio","Computer Guessing", "User Guessing"))
 
 
 if a == "Computer Guessing":
     computer_guessing()
 elif a == "User Guessing":
     user_guessing()
+elif a=="Portfolio":
+    Portfolio()
